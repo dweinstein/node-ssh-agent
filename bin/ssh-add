@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+'use strict';
+var cfg = require('rc')('sshagent');
+
+var argv = require('minimist')(process.argv.slice(2));
+
+var fs = require('fs');
+var join = require('path').join;
+
+var skt = cfg.path || process.env.SSH_AGENT_PATH;
+var client = require('../client');
+var readSSHKey = require('../lib/util').readSSHKey;
+var fingerprint = require('../lib/util').fingerprint;
+
+var privKeyPath = argv.f || argv.p || argv._[0] || join(process.env.HOME, '.ssh', 'id_rsa');
+if (privKeyPath[0] === '~') {
+  privKeyPath = join(process.env.HOME, privKeyPath.slice(1));
+}
+
+function addKey(err, keys) {
+  if (err) { throw new Error(err); }
+
+  var pub = keys[0];
+  var priv = keys[1];
+  if (!priv) {
+    console.error('could not read private key... check password??');
+    process.exit(1);
+  }
+  var fp = fingerprint(pub);
+
+  client({path: skt}, function (err, stream) {
+
+    stream.write({type: 'addKey', key: fp, publicKey: pub, privateKey: priv});
+    stream.on('json', function (data) {
+      if (!data.type) { return; }
+
+      if (data.type === 'addKeyResponse') {
+        console.log(data);
+        process.exit(1);
+      }
+    });
+  });
+}
+
+readSSHKey(privKeyPath, addKey);
+

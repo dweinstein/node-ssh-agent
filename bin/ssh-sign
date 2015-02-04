@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+'use strict';
+var cfg = require('rc')('sshagent', {
+  algo: 'rsa-sha256'
+});
+
+var argv = require('minimist')(process.argv.slice(2));
+
+var skt = cfg.path || process.env.SSH_AGENT_PATH;
+var fs = require('fs');
+
+var client = require('../client');
+
+var algo = argv.a || argv.algo || cfg.algo;
+var key = argv.k || argv.key;
+
+if (!key) {
+  console.error('supply key id to use');
+  process.exit(1);
+}
+
+var stdin = process.stdin;
+
+function getInput(cb) {
+  var stringToSign = [];
+  if (argv.d || argv.data) {
+    stringToSign = argv.d || argv.data;
+    return cb(null, stringToSign);
+  } else {
+    stdin.on('data', function (data) {
+      stringToSign.push(data);
+    });
+    stdin.on('end', function () {
+      stringToSign = stringToSign.toString();
+      return cb(null, stringToSign);
+    });
+  }
+}
+
+function sign(err, stringToSign) {
+  client({path: skt}, function (err, stream) {
+
+    stream.write({type: 'sign', algorithm: algo, key: key, stringToSign: stringToSign});
+
+    stream.on('json', function (data) {
+      if (!data.type) { return; }
+
+      if (data.type === 'signResponse') {
+        console.log(data.signature);
+        process.exit(1);
+      }
+    });
+  });
+}
+
+getInput(sign);
+

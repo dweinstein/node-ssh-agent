@@ -1,0 +1,40 @@
+{
+  "name": "node-ssh-agent",
+  "version": "1.0.0",
+  "description": "a pure js **replacement** for ssh-agent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/dweinstein/node-ssh-agent",
+  "bugs": "https://github.com/dweinstein/node-ssh-agent/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dweinstein/node-ssh-agent.git"
+  },
+  "bin": {
+    "node-ssh-add": "./bin/ssh-add",
+    "node-ssh-list": "./bin/ssh-list",
+    "node-ssh-sign": "./bin/ssh-sign",
+    "node-ssh-agent": "./bin/ssh-agent"
+  },
+  "directories": {
+    "bin": "./bin"
+  },
+  "keywords": [
+    "ssh",
+    "agent",
+    "ssh-agent"
+  ],
+  "author": "dweinstein",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^0.9.0",
+    "minimist": "*",
+    "pw": "0.0.4",
+    "rc": "^0.6.0",
+    "split": "^0.3.3",
+    "through": "^2.3.6",
+    "through-parse": "^0.1.0"
+  }
+}
