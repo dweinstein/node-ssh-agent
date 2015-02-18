@@ -13,6 +13,11 @@ module.exports = function createServer(opt, events) {
       console.log('client disconnected');
     });
 
+    stream.on('error', function (err) {
+      console.log(err);
+      stream.write({error: err.toString()});
+    });
+
     var write = stream.write;
 
     stream.write = function() {
