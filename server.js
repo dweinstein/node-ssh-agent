@@ -7,10 +7,10 @@ var BANNER = {type: 'bannerResponse', version: 1.0, name: 'SSHAgent'};
 module.exports = function createServer(opt, events) {
 
   function routeEvent(stream) {
-    console.log('client connected');
+    //console.log('client connected');
 
     stream.on('end', function () {
-      console.log('client disconnected');
+      //console.log('client disconnected');
     });
 
     stream.on('error', function (err) {
