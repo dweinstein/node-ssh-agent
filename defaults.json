@@ -1,3 +1,4 @@
 {
-  "path": "/tmp/sshagent.sock"
+  "path": "/tmp/sshagent.sock",
+  "algo": "rsa-sha256"
 }

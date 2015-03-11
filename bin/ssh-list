@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-var cfg = require('rc')('sshagent', {
-  algo: 'rsa-sha256'
-});
+var cfg = require('../lib/rc');
 
 var argv = require('minimist')(process.argv.slice(2));
 

@@ -2,7 +2,7 @@ var net = require('net');
 var fs = require('fs');
 
 // TODO: secure mktmp?
-var cfg = require('rc')('sshagent', require('./defaults.json'));
+var cfg = require('./lib/rc');
 
 if (!cfg.path) {
   throw new Error("must supply agent path in config; see documentation");

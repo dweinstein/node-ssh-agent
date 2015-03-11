@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-var cfg = require('rc')('sshagent');
+var cfg = require('../lib/rc');
 
 var argv = require('minimist')(process.argv.slice(2));
 
