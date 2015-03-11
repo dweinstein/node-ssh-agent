@@ -10,18 +10,14 @@ This ssh-agent is currently not compatible with the original
 does not use the same binary protocol and instead uses [line delimited
 json](http://en.wikipedia.org/wiki/JSON_Streaming).
 
+This code is still being developed can significantly. In particular the
+protocol could change.
+
 # TODO
 
 - [ ] Need to make the path of the socket unpredictable and securely created with mktemp.
 - [ ] Add some tests once things start to settle on the protocol bits.
-- [ ] some more security testing
-
-# WARNING
-
-- This code is alpha quality and may change significantly. In particular the
-  protocol could change soon.
-- This is "alpha" code and almost certainly not as "secure" as the original
-  ssh-agent due to the TODO list and not having been fully battle-tested.
+- [ ] some more security testing on the creation of the socket file.
 
 # USAGE
 Use the supplied scripts, e.g., `node-ssh-add`, `node-ssh-list` `node-ssh-sign`.
