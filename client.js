@@ -1,6 +1,7 @@
 var net = require('net');
 
 var linestream = require('./lib/linestream');
+var cfg = require('./lib/rc');
 
 module.exports = function client(opt, cb) {
 
@@ -24,7 +25,7 @@ module.exports = function client(opt, cb) {
 
   }
 
-  var listener = net.connect(opt.path);
+  var listener = net.connect(opt.path || cfg.path);
 
   listener
   .on('connect', connection.bind(connection, listener));
