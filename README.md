@@ -1,7 +1,13 @@
 # SYNOPSIS
 
 This agent is a **replacement** for the old ssh-agent. This package includes
-both a "server" and "client" scripts for use on the command line.
+both a "server" and "client" scripts for use on the command line. One big
+difference between this project and
+[macavage's](https://github.com/mcavage/node-ssh-agent) is that this project
+does not depend on the archaic
+[ssh-agent](http://linux.die.net/man/1/ssh-agent) and this project allows
+selection of different (stronger) hash [algorithms](lib/events/sign.js#L4) for
+signing data.
 
 # DETAILS
 
@@ -10,8 +16,8 @@ This ssh-agent is currently not compatible with the original
 does not use the same binary protocol and instead uses [line delimited
 json](http://en.wikipedia.org/wiki/JSON_Streaming).
 
-This code is still being developed can significantly. In particular the
-protocol could change.
+This code is still being developed significantly. In particular the protocol
+could change.
 
 # TODO
 
