@@ -36,7 +36,7 @@ function addKey(err, keys) {
 
       if (data.type === 'addKeyResponse') {
         console.log(data);
-        process.exit(1);
+        process.exit(0);
       }
     });
   });
