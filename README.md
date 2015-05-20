@@ -19,12 +19,6 @@ json](http://en.wikipedia.org/wiki/JSON_Streaming).
 This code is still being developed significantly. In particular the protocol
 could change.
 
-# TODO
-
-- [ ] Need to make the path of the socket unpredictable and securely created with mktemp.
-- [ ] Add some tests once things start to settle on the protocol bits.
-- [ ] some more security testing on the creation of the socket file.
-
 # USAGE
 Use the supplied scripts, e.g., `node-ssh-add`, `node-ssh-list` `node-ssh-sign`.
 
