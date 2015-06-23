@@ -16,7 +16,7 @@ var events = [
 
 fs.unlink(cfg.path, function () {
   // TODO: permissions on socket?
-  server = require('./server')({}, events);
+  var server = require('./server')({}, events);
   server.listen(cfg.path, function() {
     console.log('listening on path ' + cfg.path);
   });

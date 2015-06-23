@@ -17,7 +17,7 @@ client({path: path}, function (err, stream) {
     if (!data.type) { return; }
 
     if (data.type === 'listKeysResponse') {
-      console.log(data.keys);
+      console.log(JSON.stringify(data.keys));
       process.exit(0);
     }
   });

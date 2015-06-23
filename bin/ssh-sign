@@ -44,7 +44,7 @@ function sign(err, stringToSign) {
       if (!data.type) { return; }
 
       if (data.type === 'signResponse') {
-        console.log(data.signature);
+        console.log(JSON.stringify(data.signature));
         process.exit(1);
       }
     });
